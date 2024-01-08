@@ -7,6 +7,7 @@ import se.lexicon.model.Person;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Exercises {
@@ -84,9 +85,14 @@ public class Exercises {
      */
     public static void exercise5(String message) {
         System.out.println(message);
-        //Write your code here
 
+        Predicate<Person> findWithId = (person) -> person.getId() == 456;
+        Function<Person, String> convertToString = (person) -> "Name: " + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate();
+
+        String found = storage.findOneAndMapToString(findWithId, convertToString);
         System.out.println("----------------------");
+
+        if(found != null) System.out.println(found);
     }
 
     /*
