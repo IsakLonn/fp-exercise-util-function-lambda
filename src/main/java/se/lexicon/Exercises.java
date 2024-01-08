@@ -1,8 +1,10 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -20,7 +22,6 @@ public class Exercises {
         Predicate<Person> findPersons = (person) -> Objects.equals(person.getFirstName().toLowerCase(), "erik");
 
         List<Person> found = storage.findMany(findPersons);
-        System.out.println(found.size());
         System.out.println("----------------------");
 
         for (Person person: found) {
@@ -34,9 +35,16 @@ public class Exercises {
      */
     public static void exercise2(String message) {
         System.out.println(message);
-        //Write your code here
 
+        Predicate<Person> findFemales = (person) -> Objects.equals(person.getGender(), Gender.FEMALE);
+
+        List<Person> found = storage.findMany(findFemales);
         System.out.println("----------------------");
+
+        for (Person person: found) {
+            System.out.println(found);
+        }
+
     }
 
     /*
@@ -44,9 +52,15 @@ public class Exercises {
      */
     public static void exercise3(String message) {
         System.out.println(message);
-        //Write your code here
 
+        Predicate<Person> findBornAfter = (person) -> person.getBirthDate().isBefore(LocalDate.parse("2000-01-01"));
+
+        List<Person> found = storage.findMany(findBornAfter);
         System.out.println("----------------------");
+
+        for (Person person: found) {
+            System.out.println(found);
+        }
     }
 
     /*
