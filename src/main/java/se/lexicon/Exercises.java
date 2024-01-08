@@ -154,9 +154,11 @@ public class Exercises {
      */
     public static void exercise9(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> findContains = (person) -> person.getLastName().toLowerCase().contains(person.getFirstName().toLowerCase());
+        Consumer<Person> print = System.out::println;
+
+        storage.findAndDo(findContains, print);
     }
 
     /*
