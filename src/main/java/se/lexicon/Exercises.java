@@ -68,9 +68,13 @@ public class Exercises {
      */
     public static void exercise4(String message) {
         System.out.println(message);
-        //Write your code here
 
+        Predicate<Person> findWithId = (person) -> person.getId() == 123;
+
+        Person found = storage.findOne(findWithId);
         System.out.println("----------------------");
+
+        if(found != null) System.out.println(found);
 
     }
 
