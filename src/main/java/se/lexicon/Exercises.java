@@ -101,7 +101,12 @@ public class Exercises {
     public static void exercise6(String message) {
         System.out.println(message);
 
-        Predicate<Person> findWithId = (person) -> person.getFirstName().charAt(0) == 'E';
+        Predicate<Person> findWithId = (person) -> {
+            if (person.getGender() == Gender.MALE) {
+                return person.getFirstName().charAt(0) == 'E';
+            }
+            return false;
+        };
         Function<Person, String> convertToString = (person) -> "Name: " + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate();
 
         List<String> found = storage.findManyAndMapEachToString(findWithId, convertToString);
