@@ -6,6 +6,7 @@ import se.lexicon.model.Person;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -185,9 +186,20 @@ public class Exercises {
      */
     public static void exercise11(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> firstnameStartsWithA = (person) -> person.getFirstName().toLowerCase().charAt(0) == 'a';
+        Comparator<Person> compareBirthday = (person1, person2) ->
+        {
+                if(person1.getBirthDate().isBefore(person2.getBirthDate())) return 1;
+                else if(person1.getBirthDate().isAfter(person2.getBirthDate()))return -1;
+                else return 0;
+        };
+
+        List<Person> found = storage.findAndSort(firstnameStartsWithA, compareBirthday);
+
+        for (Person person: found) {
+            System.out.println(found);
+        }
     }
 
     /*
