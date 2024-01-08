@@ -207,9 +207,18 @@ public class Exercises {
      */
     public static void exercise12(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> findBefore1950 = (person) -> person.getBirthDate().getYear() < 1950;
+        Comparator<Person> sortByYear = (person1, person2) ->
+        {
+            if(person1.getBirthDate().isBefore(person2.getBirthDate())) return 1;
+            else if(person1.getBirthDate().isAfter(person2.getBirthDate()))return -1;
+            else return 0;
+        };
+
+        List<Person> found = storage.findAndSort(findBefore1950, sortByYear);
+
+        found.forEach(System.out::println);
     }
 
     /*
@@ -217,8 +226,19 @@ public class Exercises {
      */
     public static void exercise13(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> firstnameStartsWithA = (person) -> person.getFirstName().toLowerCase().charAt(0) == 'a';
+        Comparator<Person> compareBirthday = (person1, person2) ->
+        {
+            if(person1.getBirthDate().isBefore(person2.getBirthDate())) return 1;
+            else if(person1.getBirthDate().isAfter(person2.getBirthDate()))return -1;
+            else return 0;
+        };
+
+        List<Person> found = storage.findAndSort(firstnameStartsWithA, compareBirthday);
+
+        for (Person person: found) {
+            System.out.println(found);
+        }
     }
 }
