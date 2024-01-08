@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -141,9 +142,11 @@ public class Exercises {
      */
     public static void exercise8(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> findUlf = (person) -> Objects.equals(person.getFirstName().toLowerCase(), "ulf");
+        Consumer<Person> print = System.out::println;
+
+        storage.findAndDo(findUlf, print);
     }
 
     /*
