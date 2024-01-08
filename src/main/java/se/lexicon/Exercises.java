@@ -166,9 +166,18 @@ public class Exercises {
      */
     public static void exercise10(String message) {
         System.out.println(message);
-        //Write your code here
 
-        System.out.println("----------------------");
+        Predicate<Person> findPalindrome = (person) ->{
+            String reversed = "";
+            for (char c: person.getFirstName().toLowerCase().toCharArray())
+            {
+                reversed = c + reversed;
+            }
+            return person.getFirstName().toLowerCase().equals(reversed);
+        };
+        Consumer<Person> print = System.out::println;
+
+        storage.findAndDo(findPalindrome, print);
     }
 
     /*
