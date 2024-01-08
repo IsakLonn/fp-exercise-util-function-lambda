@@ -100,9 +100,16 @@ public class Exercises {
      */
     public static void exercise6(String message) {
         System.out.println(message);
-        //Write your code here
 
+        Predicate<Person> findWithId = (person) -> person.getFirstName().charAt(0) == 'E';
+        Function<Person, String> convertToString = (person) -> "Name: " + person.getFirstName() + " " + person.getLastName() + " born " + person.getBirthDate();
+
+        List<String> found = storage.findManyAndMapEachToString(findWithId, convertToString);
         System.out.println("----------------------");
+
+        for (String person: found) {
+            System.out.println(found);
+        }
     }
 
     /*
